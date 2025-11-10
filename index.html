@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>うんちくんの大冒険！勉強バトル 💩</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- BGM切り替えボタン -->
+    <button id="bgmToggle" class="bgm-toggle">🔊</button>
+
+    <!-- スタート画面 -->
+    <div id="startScreen" class="screen active">
+        <div class="title-container">
+            <h1 class="game-title">🍑 うんちくんの大冒険 💩</h1>
+            <p class="subtitle">楽しく勉強しよう！</p>
+        </div>
+        <div class="character" id="mainCharacter">
+            <div class="butt-face">😊</div>
+        </div>
+        <button class="start-button" onclick="showSubjectSelect()">スタート！</button>
+        <div class="high-score">最高得点: <span id="highScore">0</span>点</div>
+    </div>
+
+    <!-- 科目選択画面 -->
+    <div id="subjectScreen" class="screen">
+        <h2 class="screen-title">科目を選んでね！</h2>
+        <div class="subject-grid">
+            <button class="subject-btn" onclick="showUnitSelect('math')" data-subject="math">
+                <div class="subject-icon">📐</div>
+                <div class="subject-name">算数</div>
+            </button>
+            <button class="subject-btn" onclick="showUnitSelect('japanese')" data-subject="japanese">
+                <div class="subject-icon">📚</div>
+                <div class="subject-name">国語</div>
+            </button>
+            <button class="subject-btn" onclick="showUnitSelect('science')" data-subject="science">
+                <div class="subject-icon">🔬</div>
+                <div class="subject-name">理科</div>
+            </button>
+            <button class="subject-btn" onclick="showUnitSelect('social')" data-subject="social">
+                <div class="subject-icon">🗾</div>
+                <div class="subject-name">社会</div>
+            </button>
+        </div>
+        <button class="back-button" onclick="showScreen('startScreen')">← もどる</button>
+    </div>
+
+    <!-- 単元選択画面 -->
+    <div id="unitScreen" class="screen">
+        <h2 class="screen-title" id="unitScreenTitle">単元を選んでね！</h2>
+        <div id="unitGrid" class="unit-grid"></div>
+        <button class="back-button" onclick="showScreen('subjectScreen')">← もどる</button>
+    </div>
+
+    <!-- ゲーム画面 -->
+    <div id="gameScreen" class="screen">
+        <div class="game-header">
+            <div class="score-display">
+                得点: <span id="currentScore">0</span>点
+            </div>
+            <div class="combo-display" id="comboDisplay">
+                コンボ: <span id="comboCount">0</span>
+            </div>
+            <div class="question-counter">
+                問題 <span id="questionNumber">1</span> / <span id="totalQuestions">10</span>
+            </div>
+        </div>
+
+        <div class="character game-character" id="gameCharacter">
+            <div class="butt-face">😊</div>
+        </div>
+
+        <div class="poop-container" id="poopContainer"></div>
+
+        <div class="question-container">
+            <div class="question-text" id="questionText">ここに問題が表示されます</div>
+            <div class="hint-text" id="hintText"></div>
+        </div>
+
+        <div class="choices-container" id="choicesContainer">
+            <!-- 選択肢がここに動的に生成されます -->
+        </div>
+
+        <button class="back-button" onclick="quitGame()">← やめる</button>
+    </div>
+
+    <!-- 結果画面 -->
+    <div id="resultScreen" class="screen">
+        <h2 class="screen-title">結果発表！</h2>
+        <div class="result-character" id="resultCharacter">
+            <div class="butt-face">😊</div>
+        </div>
+        <div class="result-container">
+            <div class="result-score">
+                <div class="result-label">今回の得点</div>
+                <div class="result-value" id="finalScore">0</div>
+            </div>
+            <div class="result-stats">
+                <div class="stat-item">
+                    <span class="stat-label">正解数:</span>
+                    <span class="stat-value" id="correctCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">不正解数:</span>
+                    <span class="stat-value" id="wrongCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">最大コンボ:</span>
+                    <span class="stat-value" id="maxCombo">0</span>
+                </div>
+            </div>
+            <div class="result-message" id="resultMessage"></div>
+        </div>
+        <button class="play-again-button" onclick="playAgain()">もう一度！</button>
+        <button class="back-button" onclick="showScreen('startScreen')">← タイトルへ</button>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
